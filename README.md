@@ -1,2 +1,5 @@
 # Simple math engine 
-This is a console application + dedicated library for test and educational purpose
+
+`MathEngine` - main lib with all logic.
+`MathEngine.CLI` - simple console application to test your own input.
+`MathEngine.Test` - basic parser tests for the application.

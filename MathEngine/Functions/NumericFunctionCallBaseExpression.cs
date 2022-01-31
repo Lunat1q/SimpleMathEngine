@@ -19,7 +19,7 @@ namespace MathEngine.Functions
             this.Arguments = arguments;
         }
 
-        public override decimal Evaluate(IDataContext dataContext)
+        public override double Evaluate(IDataContext dataContext)
         {
             if (this.ValidateArguments())
             {
@@ -33,6 +33,6 @@ namespace MathEngine.Functions
 
         private protected abstract bool ValidateArguments();
 
-        private protected abstract decimal ExecuteFunction(IList<decimal> arguments);
+        private protected abstract double ExecuteFunction(IList<double> arguments);
     }
 }

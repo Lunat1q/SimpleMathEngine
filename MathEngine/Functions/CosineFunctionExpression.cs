@@ -20,10 +20,10 @@ namespace MathEngine.Functions
             return this.Arguments.Count == 1;
         }
 
-        private protected override decimal ExecuteFunction(IList<decimal> arguments)
+        private protected override double ExecuteFunction(IList<double> arguments)
         {
             var rad = MathHelper.Reg2Rad(arguments.First());
-            var res = (decimal)Math.Cos(rad);
+            var res = Math.Cos(rad);
             return res;
         }
 

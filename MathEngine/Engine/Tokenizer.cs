@@ -22,7 +22,7 @@ namespace MathEngine.Engine
 
         public Token Token { get; private set; }
 
-        public decimal Number { get; private set; }
+        public double Number { get; private set; }
 
         public string Identifier { get; private set; }
 
@@ -111,7 +111,7 @@ namespace MathEngine.Engine
             if (char.IsDigit(this._currentChar) || this._currentChar == '.')
             {
                 var inPoint = false;
-                var current = 0m;
+                var current = 0d;
                 var inPointCounter = 0;
                 var afterPointNumber = 0L;
                 var haveDigits = false;
@@ -148,7 +148,7 @@ namespace MathEngine.Engine
                     }
                 } while (valid);
 
-                this.Number = current + afterPointNumber / (decimal) Math.Pow(10, inPointCounter);
+                this.Number = current + afterPointNumber / Math.Pow(10, inPointCounter);
 
                 this.Token = Token.Number;
                 return haveDigits;

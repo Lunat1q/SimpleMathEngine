@@ -157,7 +157,6 @@ namespace MathEngine
 
                     this._tokenizer.NextToken();
 
-                    // Parse arguments
                     var arguments = new List<Expression>();
                     while (true)
                     {

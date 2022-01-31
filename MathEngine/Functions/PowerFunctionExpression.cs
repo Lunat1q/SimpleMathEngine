@@ -18,10 +18,10 @@ namespace MathEngine.Functions
             return this.Arguments.Count == 2;
         }
 
-        private protected override decimal ExecuteFunction(IList<decimal> arguments)
+        private protected override double ExecuteFunction(IList<double> arguments)
         {
-            var powResult = Math.Pow((double) arguments[0], (double) arguments[1]);
-            var ret = (decimal)powResult;
+            var powResult = Math.Pow(arguments[0], arguments[1]);
+            var ret = powResult;
             return ret;
         }
 

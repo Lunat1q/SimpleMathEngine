@@ -18,9 +18,9 @@ namespace MathEngine.Functions
             return this.Arguments.Count == 1;
         }
 
-        private protected override decimal ExecuteFunction(IList<decimal> arguments)
+        private protected override double ExecuteFunction(IList<double> arguments)
         {
-            var ret = (decimal)Math.Sqrt((double)arguments[0]);
+            var ret = Math.Sqrt(arguments[0]);
             return ret;
         }
 

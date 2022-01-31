@@ -14,7 +14,7 @@ namespace MathEngine.Expressions
             this.RightExpression = rightExpression;
         }
 
-        public override decimal Evaluate(IDataContext dataContext)
+        public override double Evaluate(IDataContext dataContext)
         {
             var lhsVal = this.LeftExpression.Evaluate(dataContext);
             var rhsVal = this.RightExpression.Evaluate(dataContext);
@@ -23,6 +23,6 @@ namespace MathEngine.Expressions
             return result;
         }
 
-        protected abstract decimal EvaluateOperation(decimal d1, decimal d2);
+        protected abstract double EvaluateOperation(double d1, double d2);
     }
 }

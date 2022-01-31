@@ -19,10 +19,10 @@ namespace MathEngine.Functions
             return this.Arguments.Count == 1;
         }
 
-        private protected override decimal ExecuteFunction(IList<decimal> arguments)
+        private protected override double ExecuteFunction(IList<double> arguments)
         {
             var rad = MathHelper.Reg2Rad(arguments.First());
-            var res = (decimal)Math.Sin(rad);
+            var res = Math.Sin(rad);
             return res;
         }
 

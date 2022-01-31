@@ -4,6 +4,6 @@
     {
         IDataContext InnerDataContext { get; }
 
-        decimal ResolveVariable(string name);
+        double ResolveVariable(string name);
     }
 }

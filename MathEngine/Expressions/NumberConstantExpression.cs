@@ -4,14 +4,14 @@ namespace MathEngine.Expressions
 {
     internal sealed class NumberConstantExpression : Expression
     {
-        private readonly decimal _number;
+        private readonly double _number;
 
-        public NumberConstantExpression(decimal number)
+        public NumberConstantExpression(double number)
         {
             this._number = number;
         }
 
-        public override decimal Evaluate(IDataContext dataContext = null)
+        public override double Evaluate(IDataContext dataContext = null)
         {
             return this._number;
         }

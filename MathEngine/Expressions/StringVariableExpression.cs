@@ -12,7 +12,7 @@ namespace MathEngine.Expressions
             this._name = name;
         }
 
-        public override decimal Evaluate(IDataContext dataContext)
+        public override double Evaluate(IDataContext dataContext)
         {
             return dataContext?.ResolveVariable(this._name) ?? throw new ArgumentNullException(nameof(dataContext));
         }

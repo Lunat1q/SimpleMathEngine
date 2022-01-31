@@ -14,14 +14,14 @@ namespace MathEngine.Context
         {
         }
 
-        public decimal ResolveVariable(string name)
+        public double ResolveVariable(string name)
         {
             switch (name.ToLower())
             {
                 case "pi":
-                    return (decimal) Math.PI;
+                    return Math.PI;
                 case "e":
-                    return (decimal) Math.E;
+                    return Math.E;
                 default:
                     if (this.InnerDataContext != null)
                     {

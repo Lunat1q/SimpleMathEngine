@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using MathEngine.Context;
+using MathEngine.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathEngine.Test
@@ -26,7 +27,7 @@ namespace MathEngine.Test
         public void TestParseEvaluate_withDecimalPoint_20()
         {
             var expression = ExpressionParser.Parse("10.5555+10");
-            expression.Evaluate(null).Should().Be(20.5555m);
+            expression.Evaluate(null).DoubleEquals(20.5555).Should().BeTrue();
         }
 
         [TestMethod]
@@ -65,14 +66,14 @@ namespace MathEngine.Test
         }
 
         [TestMethod]
-        public void TestParseEvaluate_differentPriorityOperation10Plus20Mult30_610()
+        public void TestParseEvaluate_differentPriorityOperation10Plus20Multiplied30_610()
         {
             var expression = ExpressionParser.Parse("10 + 20 * 30");
             expression.Evaluate(null).Should().Be(610);
         }
 
         [TestMethod]
-        public void TestParseEvaluate_differentPriorityOperation20Mult30Plus10_610()
+        public void TestParseEvaluate_differentPriorityOperation20Multiplied30Plus10_610()
         {
             var expression = ExpressionParser.Parse("20 * 30 + 10");
             expression.Evaluate(null).Should().Be(610);
@@ -96,28 +97,28 @@ namespace MathEngine.Test
         public void TestParseEvaluate_parenthesisExpressionWithUnary_minus2480()
         {
             var expression = ExpressionParser.Parse("-((1 + 30) * 4) * 20");
-            expression.Evaluate(null).Should().Be(-2480M);
+            expression.Evaluate(null).Should().Be(-2480d);
         }
 
         [TestMethod]
         public void TestParseEvaluate_withMathConstant_2pi()
         {
             var expression = ExpressionParser.Parse("2 * pi");
-            expression.Evaluate(DefaultContext.Instance).Should().Be(2m * (decimal)Math.PI);
+            expression.Evaluate(DefaultContext.Instance).Should().Be(2d * Math.PI);
         }
 
         [TestMethod]
         public void TestParseEvaluate_sineOf90_1()
         {
             var expression = ExpressionParser.Parse("sin(90)");
-            expression.Evaluate(DefaultContext.Instance).Should().Be(1m);
+            expression.Evaluate(DefaultContext.Instance).Should().Be(1d);
         }
 
         [TestMethod]
         public void TestParseEvaluate_cosOf0_1()
         {
             var expression = ExpressionParser.Parse("cos(0)");
-            expression.Evaluate(DefaultContext.Instance).Should().Be(1m);
+            expression.Evaluate(DefaultContext.Instance).Should().Be(1d);
         }
     }
 }

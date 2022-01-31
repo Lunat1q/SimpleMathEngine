@@ -2,6 +2,7 @@
 using MathEngine.Context;
 using MathEngine.Engine;
 using MathEngine.Expressions;
+using MathEngine.Helpers;
 
 namespace MathEngine.CLI
 {
@@ -20,7 +21,7 @@ namespace MathEngine.CLI
                     //Console.WriteLine($"Parsed expression as string: {expressionTree.GetDisplayString()}");
                     var total = Expression.Evaluate(expressionTree);
 
-                    Console.WriteLine($"Result: {total}");
+                    Console.WriteLine($"Result: {total.AsString()}");
                 }
                 catch (ExpressionSyntaxException e)
                 {

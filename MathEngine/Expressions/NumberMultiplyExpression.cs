@@ -6,7 +6,7 @@
         {
         }
 
-        protected override decimal EvaluateOperation(decimal d1, decimal d2)
+        protected override double EvaluateOperation(double d1, double d2)
         {
             return d1 * d2;
         }

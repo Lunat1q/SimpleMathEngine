@@ -11,7 +11,7 @@ namespace MathEngine.Expressions
             this.Lhs = lhs;
         }
 
-        public override decimal Evaluate(IDataContext dataContext)
+        public override double Evaluate(IDataContext dataContext)
         {
             var lhsVal = this.Lhs.Evaluate(dataContext);
 
@@ -19,6 +19,6 @@ namespace MathEngine.Expressions
             return result;
         }
 
-        protected abstract decimal EvaluateOperation(decimal d1);
+        protected abstract double EvaluateOperation(double d1);
     }
 }

@@ -19,10 +19,10 @@ namespace MathEngine.Functions
             return this.Arguments.Count == 2;
         }
 
-        private protected override decimal ExecuteFunction(IList<decimal> arguments)
+        private protected override double ExecuteFunction(IList<double> arguments)
         {
-            var logResult = Math.Log((double) arguments[0], (double) arguments[1]);
-            var ret = (decimal)logResult;
+            var logResult = Math.Log(arguments[0], arguments[1]);
+            var ret = logResult;
             return ret;
         }
 

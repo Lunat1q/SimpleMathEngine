@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using MathEngine.Expressions;
 
 namespace MathEngine.Functions
 {
-    [FunctionName("cos")]
-    internal class CosineFunctionExpression : NumericFunctionCallBaseExpression
+    [FunctionName(FunctionName)]
+    internal class SquareRootFunctionExpression : NumericFunctionCallBaseExpression
     {
-        private const string FunctionName = MathFunctionNames.Cosine;
-
-        public CosineFunctionExpression(string name, IReadOnlyCollection<Expression> arguments) : base(name, arguments)
+        internal const string FunctionName = MathFunctionNames.SquareRoot;
+        public SquareRootFunctionExpression(string name, IReadOnlyCollection<Expression> arguments) : base(name, arguments)
         {
         }
 
@@ -22,9 +20,8 @@ namespace MathEngine.Functions
 
         private protected override decimal ExecuteFunction(IList<decimal> arguments)
         {
-            var rad = MathHelper.Reg2Rad(arguments.First());
-            var res = (decimal)Math.Cos(rad);
-            return res;
+            var ret = (decimal)Math.Sqrt((double)arguments[0]);
+            return ret;
         }
 
         public override string GetDisplayString()

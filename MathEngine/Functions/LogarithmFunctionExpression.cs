@@ -1,30 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using MathEngine.Expressions;
 
 namespace MathEngine.Functions
 {
-    [FunctionName("cos")]
-    internal class CosineFunctionExpression : NumericFunctionCallBaseExpression
+    [FunctionName(FunctionName)]
+    internal class LogarithmFunctionExpression : NumericFunctionCallBaseExpression
     {
-        private const string FunctionName = MathFunctionNames.Cosine;
+        internal const string FunctionName = MathFunctionNames.Logarithm;
 
-        public CosineFunctionExpression(string name, IReadOnlyCollection<Expression> arguments) : base(name, arguments)
+        public LogarithmFunctionExpression(string name, IReadOnlyCollection<Expression> arguments) : base(name, arguments)
         {
         }
 
         private protected override bool ValidateArguments()
         {
-            return this.Arguments.Count == 1;
+            return this.Arguments.Count == 2;
         }
 
         private protected override decimal ExecuteFunction(IList<decimal> arguments)
         {
-            var rad = MathHelper.Reg2Rad(arguments.First());
-            var res = (decimal)Math.Cos(rad);
-            return res;
+            var ret = (decimal)Math.Log((double)arguments[0], (double)arguments[1]);
+            return ret;
         }
 
         public override string GetDisplayString()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using MathEngine.Context;
@@ -22,7 +23,7 @@ namespace MathEngine.Functions
         {
             if (this.ValidateArguments())
             {
-                return this.ExecuteFunction(this.Arguments.Select(x => x.Evaluate(dataContext)));
+                return this.ExecuteFunction(this.Arguments.Select(x => x.Evaluate(dataContext)).ToArray());
             }
             else
             {
@@ -32,6 +33,6 @@ namespace MathEngine.Functions
 
         private protected abstract bool ValidateArguments();
 
-        private protected abstract decimal ExecuteFunction(IEnumerable<decimal> arguments);
+        private protected abstract decimal ExecuteFunction(IList<decimal> arguments);
     }
 }

@@ -22,7 +22,7 @@ namespace MathEngine
 
             if (this._tokenizer.Token != Token.EOF)
             {
-                throw new ExpressionSyntaxException("Unknown character at the end");
+                this._tokenizer.ThrowSyntaxException();
             }
 
             return expression;

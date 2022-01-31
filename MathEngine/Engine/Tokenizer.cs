@@ -8,6 +8,8 @@ namespace MathEngine.Engine
     {
         private readonly TextReader _reader;
         private char _currentChar;
+        private char _prevMeaningChar;
+        private int _prevMeaningCharPos;
 
         public Tokenizer(TextReader reader)
         {
@@ -38,6 +40,9 @@ namespace MathEngine.Engine
                 this.NextChar();
             }
 
+            this._prevMeaningChar = this._currentChar;
+            this._prevMeaningCharPos = this.PositionIndex;
+
             if (this.TryGetSpecialCharacterToken())
             {
                 return;
@@ -53,7 +58,12 @@ namespace MathEngine.Engine
                 return;
             }
 
-            throw new ExpressionSyntaxException($"Unexpected character: {this._currentChar}");
+            this.ThrowSyntaxException();
+        }
+
+        internal void ThrowSyntaxException()
+        {
+            throw new ExpressionSyntaxException($"Unexpected character: '{this._prevMeaningChar}' at position {this._prevMeaningCharPos}");
         }
 
         private bool TryGetSpecialCharacterToken()
@@ -104,6 +114,7 @@ namespace MathEngine.Engine
                 var current = 0m;
                 var inPointCounter = 0;
                 var afterPointNumber = 0L;
+                var haveDigits = false;
 
                 var valid = true;
                 do
@@ -119,6 +130,8 @@ namespace MathEngine.Engine
                             inPointCounter++;
                             afterPointNumber = afterPointNumber * 10 + (this._currentChar - '0');
                         }
+
+                        haveDigits = true;
                     }
                     else if (this._currentChar == '.' && !inPoint)
                     {
@@ -138,7 +151,7 @@ namespace MathEngine.Engine
                 this.Number = current + afterPointNumber / (decimal) Math.Pow(10, inPointCounter);
 
                 this.Token = Token.Number;
-                return true;
+                return haveDigits;
             }
 
             return false;

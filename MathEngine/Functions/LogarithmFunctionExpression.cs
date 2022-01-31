@@ -21,7 +21,8 @@ namespace MathEngine.Functions
 
         private protected override decimal ExecuteFunction(IList<decimal> arguments)
         {
-            var ret = (decimal)Math.Log((double)arguments[0], (double)arguments[1]);
+            var logResult = Math.Log((double) arguments[0], (double) arguments[1]);
+            var ret = (decimal)logResult;
             return ret;
         }
 

@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq.Expressions;
 using System.Reflection;
 using MathEngine.Functions;
 using MathEngine.Helpers;
-using Expression = System.Linq.Expressions.Expression;
 using NumericExpression = MathEngine.Expressions.Expression;
 
 namespace MathEngine.Engine
 {
     internal static class FunctionExpressionsRepository
     {
-        private static readonly
-            Dictionary<string, Func<string, IReadOnlyCollection<NumericExpression>, NumericFunctionCallBaseExpression>>
-            TypeDictionary =
-                new Dictionary<string,
-                    Func<string, IReadOnlyCollection<NumericExpression>, NumericFunctionCallBaseExpression>>(StringComparer
-                    .OrdinalIgnoreCase);
+        private static readonly Dictionary<string, CreateFunction> TypeDictionary = new Dictionary<string, CreateFunction>(StringComparer.OrdinalIgnoreCase);
 
         private static bool _initialized;
 
@@ -67,7 +62,7 @@ namespace MathEngine.Engine
 
                 var lambda = Expression.Lambda(typeof(ObjectActivator), newExp, param);
 
-                var compiledConstructor = (ObjectActivator) lambda.Compile();
+                var compiledConstructor = (ObjectActivator)lambda.Compile();
 
                 var nameAttribute = type.GetCustomAttribute<FunctionNameAttribute>();
 
@@ -84,12 +79,14 @@ namespace MathEngine.Engine
             _initialized = true;
         }
 
-        private delegate NumericFunctionCallBaseExpression ObjectActivator(params object[] args);
-
         public static IReadOnlyCollection<string> GetFunctionsList()
         {
             Init();
             return TypeDictionary.Keys;
         }
+
+        private delegate NumericFunctionCallBaseExpression ObjectActivator(params object[] args);
+
+        private delegate NumericFunctionCallBaseExpression CreateFunction(string name, IReadOnlyCollection<NumericExpression> args);
     }
 }

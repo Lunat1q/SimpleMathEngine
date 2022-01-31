@@ -26,6 +26,10 @@ namespace MathEngine.CLI
                 {
                     Console.WriteLine(e.Message);
                 }
+                catch (ArithmeticException a)
+                {
+                    Console.WriteLine(a.Message);
+                }
                 Console.WriteLine(new string('-', 20));
             }
         }
